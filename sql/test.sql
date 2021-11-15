@@ -1,1 +1,2 @@
-show databases;
+SELECT NAME FROM sys.sysdatabases
+go
