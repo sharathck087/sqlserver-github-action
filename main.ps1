@@ -92,55 +92,55 @@ if ("sqlclient" -in $Install) {
    Write-Output "sqlclient tools are installed"
 }
 
-#  if ("sqlpackage" -in $Install) {
-#    Write-Output "installing sqlpackage"
+if ("sqlpackage" -in $Install) {
+   Write-Output "installing sqlpackage"
 
-#    if ($ismacos) {
-#       curl "https://go.microsoft.com/fwlink/?linkid=2143659" -4 -sL -o '/tmp/sqlpackage.zip'
-#       $log = unzip /tmp/sqlpackage.zip -d $HOME/sqlpackage
-#       chmod +x $HOME/sqlpackage/sqlpackage
-#       sudo ln -sf $HOME/sqlpackage/sqlpackage /usr/local/bin
-#       if ($ShowLog) {
-#          $log
-#          sqlpackage /version
-#       }
-#    }
+   if ($ismacos) {
+      curl "https://go.microsoft.com/fwlink/?linkid=2143659" -4 -sL -o '/tmp/sqlpackage.zip'
+      $log = unzip /tmp/sqlpackage.zip -d $HOME/sqlpackage
+      chmod +x $HOME/sqlpackage/sqlpackage
+      sudo ln -sf $HOME/sqlpackage/sqlpackage /usr/local/bin
+      if ($ShowLog) {
+         $log
+         sqlpackage /version
+      }
+   }
 
-#    if ($islinux) {
-#       curl "https://go.microsoft.com/fwlink/?linkid=2143497" -4 -sL -o '/tmp/sqlpackage.zip'
-#       $log = unzip /tmp/sqlpackage.zip -d $HOME/sqlpackage
-#       chmod +x $HOME/sqlpackage/sqlpackage
-#       sudo ln -sf $HOME/sqlpackage/sqlpackage /usr/local/bin
-#       if ($ShowLog) {
-#          $log
-#          sqlpackage /version
-#       }
-#    }
+   if ($islinux) {
+      curl "https://go.microsoft.com/fwlink/?linkid=2143497" -4 -sL -o '/tmp/sqlpackage.zip'
+      $log = unzip /tmp/sqlpackage.zip -d $HOME/sqlpackage
+      chmod +x $HOME/sqlpackage/sqlpackage
+      sudo ln -sf $HOME/sqlpackage/sqlpackage /usr/local/bin
+      if ($ShowLog) {
+         $log
+         sqlpackage /version
+      }
+   }
 
-#    if ($iswindows) {
-#       $log = choco install sqlpackage
-#       if ($ShowLog) {
-#          $log
-#          sqlpackage /version
-#       }
-#    }
+   if ($iswindows) {
+      $log = choco install sqlpackage
+      if ($ShowLog) {
+         $log
+         sqlpackage /version
+      }
+   }
    
-#    Write-Output "sqlpackage installed"
-# }
+   Write-Output "sqlpackage installed"
+}
 
-# if ("localdb" -in $Install) {
-#    if ($iswindows) {
-#       Write-Host "Downloading SqlLocalDB"
-#       $ProgressPreference = "SilentlyContinue"
-#       Invoke-WebRequest -Uri https://download.microsoft.com/download/7/c/1/7c14e92e-bdcb-4f89-b7cf-93543e7112d1/SqlLocalDB.msi -OutFile SqlLocalDB.msi
-#       Write-Host "Installing"
-#       Start-Process -FilePath "SqlLocalDB.msi" -Wait -ArgumentList "/qn", "/norestart", "/l*v SqlLocalDBInstall.log", "IACCEPTSQLLOCALDBLICENSETERMS=YES";
-#       Write-Host "Checking"
-#       sqlcmd -S "(localdb)\MSSQLLocalDB" -Q "SELECT @@VERSION;"
-#       sqlcmd -S "(localdb)\MSSQLLocalDB" -Q "ALTER LOGIN [sa] WITH PASSWORD=N'$SaPassword'"
+if ("localdb" -in $Install) {
+   if ($iswindows) {
+      Write-Host "Downloading SqlLocalDB"
+      $ProgressPreference = "SilentlyContinue"
+      Invoke-WebRequest -Uri https://download.microsoft.com/download/7/c/1/7c14e92e-bdcb-4f89-b7cf-93543e7112d1/SqlLocalDB.msi -OutFile SqlLocalDB.msi
+      Write-Host "Installing"
+      Start-Process -FilePath "SqlLocalDB.msi" -Wait -ArgumentList "/qn", "/norestart", "/l*v SqlLocalDBInstall.log", "IACCEPTSQLLOCALDBLICENSETERMS=YES";
+      Write-Host "Checking"
+      sqlcmd -S "(localdb)\MSSQLLocalDB" -Q "SELECT @@VERSION;"
+      sqlcmd -S "(localdb)\MSSQLLocalDB" -Q "ALTER LOGIN [sa] WITH PASSWORD=N'$SaPassword'"
       
-#       Write-Host "SqlLocalDB installed and accessible at (localdb)\MSSQLLocalDB"
-#    } else {
-#       Write-Output "localdb cannot be isntalled on mac or linux"
-#    }
-# }
+      Write-Host "SqlLocalDB installed and accessible at (localdb)\MSSQLLocalDB"
+   } else {
+      Write-Output "localdb cannot be isntalled on mac or linux"
+   }
+}
