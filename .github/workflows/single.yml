@@ -14,5 +14,5 @@ jobs:
           install: sqlengine, sqlclient
 
       - name: Run sqlclient
-        run: sqlcmd -S localhost -U SA -P Password7$ -i /${GITHUB_WORKSPACE}/sql/test.sql
+        run: sqlcmd -S localhost -U sa -P dbatools.I0 -i /${GITHUB_WORKSPACE}/sql/test.sql
         # run: sqlcmd -S localhost -U sa -P dbatools.I0 -d tempdb -Q "SELECT @@version;"
