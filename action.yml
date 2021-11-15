@@ -1,4 +1,4 @@
-name: "sql server suite"
+name: "sql server github action"
 branding:
   icon: "database"
   color: "blue"
