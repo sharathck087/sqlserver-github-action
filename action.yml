@@ -32,4 +32,4 @@ runs:
             SaPassword      = "${{ inputs.sa-password }}"
             ShowLog         = $${{ inputs.show-log }}
         }
-        ${{ github.action_path }}/mail.ps1 @params
+        ${{ github.action_path }}/main.ps1 @params
