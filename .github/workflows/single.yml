@@ -11,7 +11,8 @@ jobs:
       - name: Run the action
         uses: potatoqualitee/mssqlsuite@v1
         with:
-          install: sqlengine, sqlclient, sqlpackage, localdb
+          install: sqlengine, sqlclient
+          # install: sqlengine, sqlclient, sqlpackage, localdb
 
       - name: Run sqlclient
         run: sqlcmd -S localhost -U sa -P dbatools.I0 -d tempdb -Q "show tables;"
