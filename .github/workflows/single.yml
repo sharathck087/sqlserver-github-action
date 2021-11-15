@@ -14,5 +14,5 @@ jobs:
           install: sqlengine, sqlclient, sqlpackage, localdb
 
       - name: Run sqlclient
-        run: sqlcmd -S localhost -U sa -P dbatools.I0 -d tempdb -Q "show databases;"
+        run: sqlcmd -S localhost -U sa -P dbatools.I0 -d tempdb -Q "show tables;"
         # run: sqlcmd -S localhost -U sa -P dbatools.I0 -d tempdb -Q "SELECT @@version;"
