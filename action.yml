@@ -1,8 +1,9 @@
-name: "sql server github action"
+name: "start sql server tools"
 branding:
   icon: "database"
   color: "blue"
-description: "Installs a SQL Server suite of tools including sqlcmd, bcp, sqlpackage, db engine and localdb for Windows, macOS and Linux."
+description: "Installs a SQL Server tools."
+# including sqlcmd, bcp, sqlpackage, db engine and localdb for Windows, macOS and Linux
 inputs:
   install:
     description: "The apps to install"
